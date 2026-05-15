@@ -1,33 +1,50 @@
-import { View, Text, Button } from '@tarojs/components'
-import type { TreasureType } from '../types'
-import { rarityColors, rarityLabels } from '../constants'
-import './TreasureModal.css'
+import { Button, Text, View } from '@tarojs/components';
+import { rarityColors, rarityLabels } from '../constants';
+import './TreasureModal.css';
 
-interface TreasureModalProps {
-  visible: boolean
-  treasure: { type: TreasureType } | null
-  onCollect: () => void
-  onSkip: () => void
+export type CollectItemType = "animal" | "plant" | "tool" | "food";
+
+export interface CollectItem {
+  id: number;
+  name: string;
+  emoji: string;
+  description: string;
+  rarity: "common" | "rare" | "epic" | "legendary";
 }
 
-export default function TreasureModal({ visible, treasure, onCollect, onSkip }: TreasureModalProps) {
-  if (!visible || !treasure) return null
+interface TreasureModalProps {
+  visible: boolean;
+  itemType: CollectItemType;
+  item: CollectItem | null;
+  onCollect: () => void;
+  onSkip: () => void;
+}
+
+const typeLabels: Record<CollectItemType, string> = {
+  animal: "动物",
+  plant: "植物",
+  tool: "工具",
+  food: "食物",
+};
+
+export default function TreasureModal({ visible, itemType, item, onCollect, onSkip }: TreasureModalProps) {
+  if (!visible || !item) return null
 
   return (
     <View className='treasure-modal-mask'>
       <View className='treasure-modal-content'>
-        <View className='treasure-icon-wrapper' style={{ background: rarityColors[treasure.type.rarity] }}>
-          <Text className='treasure-icon'>{treasure.type.emoji}</Text>
+        <View className='treasure-icon-wrapper' style={{ background: rarityColors[item.rarity] }}>
+          <Text className='treasure-icon'>{item.emoji}</Text>
         </View>
 
         <View className='treasure-info'>
           <View className='treasure-name-row'>
-            <Text className='treasure-name'>{treasure.type.name}</Text>
-            <View className='treasure-rarity-tag' style={{ background: rarityColors[treasure.type.rarity] }}>
-              <Text className='treasure-rarity-text'>{rarityLabels[treasure.type.rarity]}</Text>
+            <Text className='treasure-name'>{item.name}</Text>
+            <View className='treasure-rarity-tag' style={{ background: rarityColors[item.rarity] }}>
+              <Text className='treasure-rarity-text'>{rarityLabels[item.rarity]}</Text>
             </View>
           </View>
-          <Text className='treasure-description'>{treasure.type.description}</Text>
+          <Text className='treasure-description'>{item.description}</Text>
         </View>
 
         <View className='treasure-actions'>

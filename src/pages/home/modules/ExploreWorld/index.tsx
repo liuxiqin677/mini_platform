@@ -1,5 +1,5 @@
 import { Text, View } from "@tarojs/components";
-import Taro from "@tarojs/taro";
+import Taro, { useDidShow } from "@tarojs/taro";
 import { useEffect, useState } from "react";
 import { getUserFoods, UserFoodItem } from "../../../../services/food";
 import { getUserTools, UserToolItem } from "../../../../services/tool";
@@ -16,8 +16,8 @@ export default function ExploreWorld() {
   const [tools, setTools] = useState<UserToolItem[]>([]);
   const [foods, setFoods] = useState<UserFoodItem[]>([]);
   const [selectedWorld, setSelectedWorld] = useState<WorldItem | null>(null);
-  const [selectedTools, setSelectedTools] = useState<string[]>([]);
-  const [selectedFeeds, setSelectedFeeds] = useState<string[]>([]);
+  const [selectedTools, setSelectedTools] = useState<UserToolItem[]>([]);
+  const [selectedFeeds, setSelectedFeeds] = useState<UserFoodItem[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
   const handleWorldClick = (world: WorldItem) => {
@@ -27,23 +27,23 @@ export default function ExploreWorld() {
     setShowModal(true);
   };
 
-  const toggleTool = (toolId: string) => {
+  const toggleTool = (tool: UserToolItem) => {
     setSelectedTools((prev) => {
-      if (prev.includes(toolId)) {
-        return prev.filter((id) => id !== toolId);
+      if (prev.find((t) => t.id === tool.id)) {
+        return prev.filter((t) => t.id !== tool.id);
       }
       if (prev.length >= 3) return prev;
-      return [...prev, toolId];
+      return [...prev, tool];
     });
   };
 
-  const toggleFeed = (feedId: string) => {
+  const toggleFeed = (feed: UserFoodItem) => {
     setSelectedFeeds((prev) => {
-      if (prev.includes(feedId)) {
-        return prev.filter((id) => id !== feedId);
+      if (prev.find((f) => f.id === feed.id)) {
+        return prev.filter((f) => f.id !== feed.id);
       }
       if (prev.length >= 3) return prev;
-      return [...prev, feedId];
+      return [...prev, feed];
     });
   };
 
@@ -52,7 +52,7 @@ export default function ExploreWorld() {
       setShowModal(false);
       // 跳转到迷宫页面
       Taro.navigateTo({
-        url: `/explore/mazeWord/index?worldId=${selectedWorld.id}&worldBgColor=${selectedWorld.bg_color}&worldName=${selectedWorld.name}&worldEmoji=${selectedWorld.emoji}&tools=${selectedTools.join(",")}&feeds=${selectedFeeds.join(",")}`,
+        url: `/explore/mazeWord/index?worldId=${selectedWorld.id}&worldBgColor=${selectedWorld.bg_color}&worldName=${selectedWorld.name}&worldEmoji=${selectedWorld.emoji}&tools=${encodeURIComponent(JSON.stringify(selectedTools))}&feeds=${encodeURIComponent(JSON.stringify(selectedFeeds))}`,
       });
     }
   };
@@ -95,6 +95,10 @@ export default function ExploreWorld() {
   useEffect(() => {
     init();
   }, []);
+
+  useDidShow(() => {
+    init();
+  });
 
   return (
     <View className="explore-world">
@@ -140,7 +144,8 @@ export default function ExploreWorld() {
         world={selectedWorld}
         tools={tools}
         feeds={foods}
-        selectedItems={{ tools: selectedTools, feeds: selectedFeeds }}
+        selectedTools={selectedTools}
+        selectedFeeds={selectedFeeds}
         onClose={handleCloseModal}
         onConfirm={handleConfirm}
         onToggleTool={toggleTool}

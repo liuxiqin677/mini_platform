@@ -80,6 +80,7 @@
   display: flex;
   gap: 24rpx;
   justify-content: center;
+  margin-top: 32rpx;
 }
 
 .win-btn {
@@ -99,6 +100,10 @@
 .win-btn-again {
   background-color: #f1f5f9;
   color: #1e293b;
+}
+
+.win-stats-value {
+  color: #ff6b4a;
 }
 
 .win-btn-exit {

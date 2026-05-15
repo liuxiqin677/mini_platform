@@ -5,15 +5,19 @@ import "./ItemCard.css";
 interface ItemCardProps {
   item: Item;
   selected?: boolean;
+  showCount?: boolean;
   onClick?: () => void;
   selectable?: boolean;
+  size?: 'small' | 'default';
 }
 
 export default function ItemCard({
   item,
   selected = false,
+  showCount = true,
   onClick,
   selectable = false,
+  size = 'default',
 }: ItemCardProps) {
   return (
     <View
@@ -25,9 +29,9 @@ export default function ItemCard({
           <Text className="item-check-icon">✓</Text>
         </View>
       )}
-      <View className="item-icon-wrapper">
+      <View className={`item-icon-wrapper`}>
         <Text className="item-emoji">{item.emoji}</Text>
-        {!selectable && (
+        {!selectable && showCount && (
           <View className="item-count">
             <Text className="item-count-text">{item.count}</Text>
           </View>

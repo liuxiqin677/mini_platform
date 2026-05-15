@@ -1,4 +1,8 @@
 import { request } from "../utils/request";
+import { AnimalItem } from "./animal";
+import { PlantItem } from "./plant";
+import { ToolItem } from "./tool";
+import { FoodItem } from "./food";
 
 export interface WorldItem {
   id: number;
@@ -15,6 +19,13 @@ export interface WorldItem {
   updated_at?: string;
 }
 
+export interface WorldDetail extends WorldItem {
+  animals: AnimalItem[];
+  plants: PlantItem[];
+  tools: ToolItem[];
+  foods: FoodItem[];
+}
+
 export const getWorldList = () => {
   return request<WorldItem[]>({
     url: "world/list",
@@ -23,7 +34,7 @@ export const getWorldList = () => {
 };
 
 export const getWorldDetail = (worldId: number) => {
-  return request<WorldItem>({
+  return request<WorldDetail>({
     url: "world/detail",
     method: "GET",
     data: { world_id: worldId },

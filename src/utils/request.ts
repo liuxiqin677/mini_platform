@@ -47,7 +47,7 @@ export const request = <T = any>(
           if (!isRedirectingToLogin) {
             isRedirectingToLogin = true;
             Taro.showToast({
-              title: res.errMsg || "登录过期，请重新登录",
+              title: "登录过期，请重新登录",
               icon: "none",
               duration: 2000,
             });
@@ -59,7 +59,7 @@ export const request = <T = any>(
               isRedirectingToLogin = false;
             }, 2000);
           }
-          reject(new Error(res.errMsg || "登录过期，请重新登录"));
+          reject(new Error("登录过期，请重新登录"));
           return;
         }
 
@@ -70,7 +70,7 @@ export const request = <T = any>(
             if (!isRedirectingToLogin) {
               isRedirectingToLogin = true;
               Taro.showToast({
-                title: res.errMsg || "登录过期，请重新登录",
+                title: "登录过期，请重新登录",
                 icon: "none",
                 duration: 2000,
               });
@@ -82,7 +82,7 @@ export const request = <T = any>(
                 isRedirectingToLogin = false;
               }, 2000);
             }
-            reject(new Error(res.errMsg || "登录过期，请重新登录"));
+            reject(new Error("登录过期，请重新登录"));
             return;
           }
           resolve(response);

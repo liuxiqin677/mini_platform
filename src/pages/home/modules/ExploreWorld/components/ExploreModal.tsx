@@ -2,7 +2,6 @@ import { Button, ScrollView, Text, View } from "@tarojs/components";
 import { UserFoodItem } from "../../../../../services/food";
 import { UserToolItem } from "../../../../../services/tool";
 import { WorldItem } from "../../../../../services/world";
-import type { SelectedItems } from "../types";
 import { convertToItemWithSingle } from "../utils";
 import Empty from "./Empty";
 import "./ExploreModal.css";
@@ -13,11 +12,12 @@ interface ExploreModalProps {
   world: WorldItem | null;
   tools: UserToolItem[];
   feeds: UserFoodItem[];
-  selectedItems: SelectedItems;
+  selectedTools: UserToolItem[];
+  selectedFeeds: UserFoodItem[];
   onClose: () => void;
   onConfirm: () => void;
-  onToggleTool: (id: string) => void;
-  onToggleFeed: (id: string) => void;
+  onToggleTool: (tool: UserToolItem) => void;
+  onToggleFeed: (feed: UserFoodItem) => void;
 }
 
 export default function ExploreModal({
@@ -25,7 +25,8 @@ export default function ExploreModal({
   world,
   tools,
   feeds,
-  selectedItems,
+  selectedTools,
+  selectedFeeds,
   onClose,
   onConfirm,
   onToggleTool,
@@ -62,7 +63,7 @@ export default function ExploreModal({
                 <Text className="modal-section-title">选择工具</Text>
               </View>
               <Text className="modal-section-count">
-                {selectedItems.tools.length}/3
+                {selectedTools.length}/3
               </Text>
             </View>
             {tools.length ? (
@@ -71,8 +72,8 @@ export default function ExploreModal({
                   <View key={tool.id} className="modal-grid-item">
                     <ItemCard
                       item={convertToItemWithSingle(tool)}
-                      selected={selectedItems.tools.includes(String(tool.id))}
-                      onClick={() => onToggleTool(String(tool.id))}
+                      selected={Boolean(selectedTools.find(t => t.id === tool.id))}
+                      onClick={() => onToggleTool(tool)}
                       selectable
                     />
                   </View>
@@ -90,7 +91,7 @@ export default function ExploreModal({
                 <Text className="modal-section-title">选择饲料</Text>
               </View>
               <Text className="modal-section-count">
-                {selectedItems.feeds.length}/3
+                {selectedFeeds.length}/3
               </Text>
             </View>
             {feeds.length ? (
@@ -99,8 +100,8 @@ export default function ExploreModal({
                   <View key={feed.id} className="modal-grid-item">
                     <ItemCard
                       item={convertToItemWithSingle(feed)}
-                      selected={selectedItems.feeds.includes(String(feed.id))}
-                      onClick={() => onToggleFeed(String(feed.id))}
+                      selected={Boolean(selectedFeeds.find(f => f.id === feed.id))}
+                      onClick={() => onToggleFeed(feed)}
                       selectable
                     />
                   </View>

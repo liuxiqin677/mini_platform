@@ -15,10 +15,18 @@
 .maze-player {
   font-size: 32rpx;
   animation: pulse 1s ease-in-out infinite;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow:
+    0 0 10px rgba(0, 255, 0, 0.3),
+    0 0 20px rgba(0, 255, 0, 0.3),
+    0 0 40px rgba(0, 255, 0, 0.2),
+    0 0 80px rgba(0, 255, 0, 0.1);
 }
 
 @keyframes pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -28,6 +36,21 @@
 
 .maze-treasure {
   font-size: 28rpx;
+}
+
+.maze-collect-item {
+  font-size: 28rpx;
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4rpx);
+  }
 }
 
 .maze-end {

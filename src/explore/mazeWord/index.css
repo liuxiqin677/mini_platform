@@ -1,6 +1,6 @@
 .maze-word {
+  overflow: hidden;
   min-height: 100vh;
-  padding-top: 155rpx;
   display: flex;
   flex-direction: column;
 }
@@ -19,7 +19,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 32rpx;
+  padding: 192rpx 32rpx 32rpx 32rpx;
 }
 
 .maze-header-btn {
@@ -126,13 +126,41 @@
   margin-bottom: 24rpx;
 }
 
-.maze-stats-card {
+.maze-stats-card,
+.tool-stats-card {
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 24rpx;
   padding: 24rpx;
   display: flex;
   justify-content: space-around;
   box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+}
+
+.tool-stats {
+  padding: 0 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.tool-stat {
+  width: 100%;
+}
+
+.tool-stat-label {
+  font-size: 32rpx;
+  color: #1e293b;
+  display: block;
+  margin-top: 4rpx;
+  font-weight: 700;
+  margin-bottom: 16rpx;
+}
+
+.tool-stat-value {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20rpx;
+  flex-wrap: wrap;
+  font-size: 24rpx;
 }
 
 .maze-stat {
@@ -192,4 +220,16 @@
 
 .maze-controls-row-center {
   justify-content: center;
+}
+
+.maze-item-list-content {
+  padding: 32rpx;
+}
+.maze-item-list-scroll {
+  white-space: nowrap;
+}
+.maze-item-list-item {
+  display: inline-block;
+  margin-right: 24rpx;
+  padding-top: 8rpx;
 }

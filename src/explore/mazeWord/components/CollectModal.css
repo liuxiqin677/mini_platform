@@ -1,0 +1,126 @@
+.collect-modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.collect-modal-content {
+  background: #ffffff;
+  border-radius: 48rpx;
+  padding: 64rpx;
+  width: 100%;
+  max-width: 1000rpx;
+  box-sizing: border-box;
+  animation: collectModalSlideIn 0.3s ease-out;
+}
+
+@keyframes collectModalSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.collect-icon-wrapper {
+  width: 240rpx;
+  height: 240rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 48rpx;
+  box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.15);
+}
+
+.collect-icon {
+  font-size: 64px;
+}
+
+.collect-info {
+  margin-bottom: 32px;
+}
+
+.collect-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.collect-name {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.collect-rarity-tag {
+  padding: 4px 12px;
+  border-radius: 20px;
+}
+
+.collect-rarity-text {
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.collect-type-label {
+  display: inline-block;
+  font-size: 14px;
+  color: #64748b;
+  background: #f1f5f9;
+  padding: 4px 12px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+}
+
+.collect-description {
+  font-size: 15px;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.collect-actions {
+  display: flex;
+  gap: 16px;
+}
+
+.collect-btn {
+  flex: 1;
+  height: 48px;
+  border: none;
+  border-radius: 16px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.collect-btn-skip {
+  background: #f1f5f9;
+  color: #64748b;
+}
+
+.collect-btn-skip:active {
+  background: #e2e8f0;
+}
+
+.collect-btn-collect {
+  background: linear-gradient(135deg, #f97316, #fb923c);
+  color: #ffffff;
+}
+
+.collect-btn-collect:active {
+  transform: scale(0.98);
+}

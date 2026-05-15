@@ -1,19 +1,128 @@
-import { Text, View } from "@tarojs/components";
+import { ScrollView, Text, View } from "@tarojs/components";
 import Taro, { useRouter } from "@tarojs/taro";
 import { useCallback, useEffect, useState } from "react";
 import MazeLoading from "../../components/ANLoading/MazeLoading";
-import { getWorldDetail, WorldItem } from "../../services/world";
+import ItemCard from "../../pages/home/modules/ExploreWorld/components/ItemCard";
+import { collectAnimal } from "../../services/animal";
+import { collectFood } from "../../services/food";
+import { collectPlant } from "../../services/plant";
+import { collectTool } from "../../services/tool";
+import { getWorldDetail, WorldDetail } from "../../services/world";
 import {
   DirectionButton,
   MazeCell,
   TreasureModal,
   WinModal,
 } from "./components";
-import PetModal from "./components/PetModal";
-import { feeds, tools, worldConfigs } from "./constants";
+import { worldConfigs } from "./constants";
 import "./index.css";
-import type { Pet, Treasure } from "./types";
+import type { CollectItem, CollectItemType, MazeCollectItem } from "./types";
 import { generateMaze } from "./utils/maze";
+
+const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));
+
+// 初始化游戏的函数，不依赖state而是接受参数
+const initializeGame = (
+  worldDetailData: WorldDetail,
+  setMaze: (maze: number[][]) => void,
+  setCollectItems: (items: MazeCollectItem[]) => void,
+) => {
+  const newMaze = generateMaze(13, 13);
+  setMaze(newMaze);
+
+  const allItems: Array<{
+    itemType: CollectItemType;
+    item: CollectItem;
+  }> = [];
+
+  // 添加动物
+  worldDetailData.animals?.forEach((animal) => {
+    allItems.push({
+      itemType: "animal",
+      item: {
+        id: animal.id,
+        name: animal.name,
+        emoji: animal.emoji,
+        description: animal.description,
+        rarity: animal.rarity as any,
+      },
+    });
+  });
+
+  // 添加植物
+  worldDetailData.plants?.forEach((plant) => {
+    allItems.push({
+      itemType: "plant",
+      item: {
+        id: plant.id,
+        name: plant.name,
+        emoji: plant.emoji,
+        description: plant.description,
+        rarity: plant.rarity as any,
+      },
+    });
+  });
+
+  // 添加工具
+  worldDetailData.tools?.forEach((tool) => {
+    allItems.push({
+      itemType: "tool",
+      item: {
+        id: tool.id,
+        name: tool.name,
+        emoji: tool.emoji,
+        description: tool.description,
+        rarity: tool.rarity as any,
+      },
+    });
+  });
+
+  // 添加食物
+  worldDetailData.foods?.forEach((food) => {
+    allItems.push({
+      itemType: "food",
+      item: {
+        id: food.id,
+        name: food.name,
+        emoji: food.emoji,
+        description: food.description,
+        rarity: food.rarity as any,
+      },
+    });
+  });
+
+  // 随机选择最多10个物品
+  const selectedItems = allItems.sort(() => Math.random() - 0.5).slice(0, 10);
+
+  // 随机放置物品在迷宫中
+  const newCollectItems: MazeCollectItem[] = [];
+  for (const itemData of selectedItems) {
+    let placed = false;
+    let attempts = 0;
+    while (!placed && attempts < 100) {
+      const x = Math.floor(Math.random() * (newMaze[0].length - 2)) + 1;
+      const y = Math.floor(Math.random() * (newMaze.length - 2)) + 1;
+
+      if (
+        newMaze[y][x] === 1 &&
+        !(x === 1 && y === 1) &&
+        !newCollectItems.some((i) => i.x === x && i.y === y)
+      ) {
+        newCollectItems.push({
+          x,
+          y,
+          itemType: itemData.itemType,
+          item: itemData.item,
+          collected: false,
+        });
+        placed = true;
+      }
+      attempts++;
+    }
+  }
+
+  setCollectItems(newCollectItems);
+};
 
 export default function MazeWord() {
   const router = useRouter();
@@ -22,137 +131,145 @@ export default function MazeWord() {
     worldBgColor = "#fff",
     worldName,
     worldEmoji,
-    tools: toolsStr = "",
-    feeds: feedsStr = "",
+    tools,
+    feeds,
   } = router.params as Record<string, string>;
+  const toolsData = JSON.parse(decodeURIComponent(tools || "[]")) || [];
+  const feedsData = JSON.parse(decodeURIComponent(feeds || "[]")) || [];
 
   const config =
-    worldConfigs[worldId as keyof typeof worldConfigs] ||
-    worldConfigs["wild-land"];
-  const [loading, setLoading] = useState(false);
-  const [worldDetail, setWorldDetail] = useState<WorldItem>();
+    worldConfigs[worldId as keyof typeof worldConfigs] || worldConfigs["1"];
+  const [loading, setLoading] = useState(true);
+  const [worldDetail, setWorldDetail] = useState<WorldDetail>();
   const [maze, setMaze] = useState<number[][]>([]);
   const [playerPos, setPlayerPos] = useState({ x: 1, y: 1 });
   const [won, setWon] = useState(false);
-  const [treasures, setTreasures] = useState<Treasure[]>([]);
-  const [pets, setPets] = useState<Pet[]>([]);
-  const [collectedTreasures, setCollectedTreasures] = useState<Treasure[]>([]);
-  const [collectedPets, setCollectedPets] = useState<Pet[]>([]);
-  const [showTreasureModal, setShowTreasureModal] = useState(false);
-  const [showPetModal, setShowPetModal] = useState(false);
-  const [currentTreasure, setCurrentTreasure] = useState<Treasure | null>(null);
-  const [currentPet, setCurrentPet] = useState<Pet | null>(null);
+  const [collectItems, setCollectItems] = useState<MazeCollectItem[]>([]);
+  const [collectedCount, setCollectedCount] = useState(0);
+  const [showCollectModal, setShowCollectModal] = useState(false);
+  const [currentCollectItem, setCurrentCollectItem] = useState<{
+    itemType: CollectItemType;
+    item: CollectItem;
+    x?: number;
+    y?: number;
+  } | null>(null);
 
-  // 解析选中的工具和饲料
-  const selectedTools = toolsStr ? toolsStr.split(",") : [];
-  const selectedFeeds = feedsStr ? feedsStr.split(",") : [];
-  const selectedToolsDetails = tools.filter((t) =>
-    selectedTools.includes(t.id),
-  );
-  const selectedFeedsDetails = feeds.filter((f) =>
-    selectedFeeds.includes(f.id),
-  );
-
-  const initWord = async () => {
-    if (!worldId) return;
-    const res = await getWorldDetail(Number(worldId));
-    if (res.code === 200 && res.data) {
-      setWorldDetail(res.data);
-    }
-  };
-
-  const initGame = useCallback(async () => {
-    Taro.showLoading({
-      title: "加载中...",
-    });
-    setLoading(true);
-    await initWord();
-    Taro.hideLoading();
-    setLoading(false);
-    const newMaze = generateMaze(13, 13);
-    setMaze(newMaze);
+  const initGame = (worldDetail: WorldDetail) => {
+    initializeGame(worldDetail, setMaze, setCollectItems);
     setPlayerPos({ x: 1, y: 1 });
     setWon(false);
-    setCollectedTreasures([]);
-    setCollectedPets([]);
-    setShowTreasureModal(false);
-    setShowPetModal(false);
-    setCurrentTreasure(null);
-    setCurrentPet(null);
+    setCollectedCount(0);
+    setShowCollectModal(false);
+    setCurrentCollectItem(null);
+  };
 
-    // 随机放置宝藏、宠物
-    const newTreasures: Treasure[] = [];
-    const newPets: Pet[] = [];
-    for (let y = 0; y < newMaze.length; y++) {
-      for (let x = 0; x < newMaze[0].length; x++) {
-        if (
-          newMaze[y][x] === 1 &&
-          Math.random() < 0.18 &&
-          !(x === 1 && y === 1)
-        ) {
-          const rand = Math.random();
-          // 50%概率是宝藏，50%概率是宠物
-          if (rand < 0.5) {
-            // 放置宝藏
-            let treasureType;
-            if (rand < 0.3) {
-              treasureType = config.treasures[0];
-            } else if (rand < 0.45) {
-              treasureType = config.treasures[1];
-            } else {
-              treasureType = config.treasures[2];
-            }
-            newTreasures.push({ x, y, type: treasureType, collected: false });
-          } else {
-            // 放置宠物
-            const petRand = Math.random();
-            let petType;
-            if (petRand < 0.6) {
-              petType = config.pets[0];
-            } else if (petRand < 0.9) {
-              petType = config.pets[1];
-            } else {
-              petType = config.pets[2];
-            }
-            newPets.push({ x, y, type: petType, collected: false });
-          }
-        }
-      }
-    }
-    setPets(newPets);
-    setTreasures(newTreasures);
-  }, [config.treasures, config.pets]);
-
+  // 只在页面初次加载时获取世界详情
   useEffect(() => {
-    initGame();
-  }, [initGame]);
+    const loadWorldDetail = async () => {
+      if (!worldId) return;
+      setLoading(true);
+      try {
+        const res = await getWorldDetail(Number(worldId));
+        if (res.code === 200 && res.data) {
+          setWorldDetail(res.data);
+          initGame(res.data);
+        }
+      } catch (error) {
+        console.error("Failed to load world detail:", error);
+      } finally {
+        await delay(1000);
+        setLoading(false);
+      }
+    };
+
+    loadWorldDetail();
+  }, [worldId]); // 只依赖 worldId，确保只在页面进入时执行一次
+
+  // 重新开始游戏的函数
+  const handleRestart = useCallback(async () => {
+    if (!worldDetail) return;
+    setLoading(true);
+    initGame(worldDetail);
+    await delay(1000);
+    setLoading(false);
+  }, [worldDetail]);
+
+  const handleCollect = async () => {
+    if (!currentCollectItem) return;
+
+    try {
+      let success = false;
+      switch (currentCollectItem.itemType) {
+        case "animal":
+          const animalRes = await collectAnimal(currentCollectItem.item.id);
+          success = animalRes.code === 200;
+          break;
+        case "plant":
+          const plantRes = await collectPlant(currentCollectItem.item.id);
+          success = plantRes.code === 200;
+          break;
+        case "tool":
+          const toolRes = await collectTool(currentCollectItem.item.id);
+          success = toolRes.code === 200;
+          break;
+        case "food":
+          const foodRes = await collectFood(currentCollectItem.item.id);
+          success = foodRes.code === 200;
+          break;
+      }
+
+      if (success) {
+        // 从列表中移除该项
+        setCollectItems((prev) =>
+          prev.filter(
+            (i) =>
+              !(i.x === currentCollectItem?.x && i.y === currentCollectItem?.y),
+          ),
+        );
+        setCollectedCount((prev) => prev + 1);
+      }
+    } catch (error) {
+      console.error("Failed to collect item:", error);
+    }
+
+    setShowCollectModal(false);
+    setCurrentCollectItem(null);
+  };
+
+  const handleSkip = () => {
+    if (!currentCollectItem) return;
+    // 从列表中移除该项
+    setCollectItems((prev) =>
+      prev.filter(
+        (i) =>
+          !(i.x === currentCollectItem?.x && i.y === currentCollectItem?.y),
+      ),
+    );
+    setShowCollectModal(false);
+    setCurrentCollectItem(null);
+  };
 
   const movePlayer = useCallback(
     (dx: number, dy: number) => {
-      if (won || showTreasureModal || showPetModal) return;
+      if (won || showCollectModal) return;
 
       setPlayerPos((prev) => {
         const newX = prev.x + dx;
         const newY = prev.y + dy;
 
         if (maze[newY] && maze[newY][newX] !== 0) {
-          // 检查宠物
-          const pet = pets.find(
-            (p) => p.x === newX && p.y === newY && !p.collected,
+          // 检查是否有物品
+          const collectItem = collectItems.find(
+            (i) => i.x === newX && i.y === newY,
           );
-          if (pet) {
-            setCurrentPet(pet);
-            setShowPetModal(true);
-            return { x: newX, y: newY };
-          }
-
-          // 检查宝藏
-          const treasure = treasures.find(
-            (t) => t.x === newX && t.y === newY && !t.collected,
-          );
-          if (treasure) {
-            setCurrentTreasure(treasure);
-            setShowTreasureModal(true);
+          if (collectItem) {
+            setCurrentCollectItem({
+              itemType: collectItem.itemType,
+              item: collectItem.item,
+              x: collectItem.x,
+              y: collectItem.y,
+            });
+            setShowCollectModal(true);
           }
 
           // 检查终点
@@ -165,47 +282,10 @@ export default function MazeWord() {
         return prev;
       });
     },
-    [maze, won, showTreasureModal, showPetModal, treasures, pets],
+    [maze, won, showCollectModal, collectItems],
   );
 
-  const handleTreasureDecision = (collect: boolean) => {
-    if (currentTreasure) {
-      setTreasures((prev) =>
-        prev.map((t) =>
-          t.x === currentTreasure.x && t.y === currentTreasure.y
-            ? { ...t, collected: true }
-            : t,
-        ),
-      );
-
-      if (collect) {
-        setCollectedTreasures((prev) => [...prev, currentTreasure]);
-      }
-    }
-    setShowTreasureModal(false);
-    setCurrentTreasure(null);
-  };
-
-  const handlePetDecision = (collect: boolean) => {
-    if (currentPet) {
-      setPets((prev) =>
-        prev.map((p) =>
-          p.x === currentPet.x && p.y === currentPet.y
-            ? { ...p, collected: true }
-            : p,
-        ),
-      );
-
-      if (collect) {
-        setCollectedPets((prev) => [...prev, currentPet]);
-      }
-    }
-    setShowPetModal(false);
-    setCurrentPet(null);
-  };
-
   const handleExit = () => {
-    // 返回上一页
     const pages = Taro.getCurrentPages();
     if (pages.length > 1) {
       Taro.navigateBack();
@@ -221,6 +301,16 @@ export default function MazeWord() {
   const handleMoveLeft = () => movePlayer(-1, 0);
   const handleMoveRight = () => movePlayer(1, 0);
 
+  if (loading) {
+    return (
+      <MazeLoading
+        worldName={worldName}
+        worldEmoji={worldEmoji}
+        worldBgColor={worldBgColor}
+      />
+    );
+  }
+
   if (maze.length === 0) {
     return (
       <View
@@ -232,16 +322,6 @@ export default function MazeWord() {
     );
   }
 
-  if (loading) {
-    return (
-      <MazeLoading
-        worldName={worldName}
-        worldEmoji={worldEmoji}
-        worldBgColor={worldBgColor}
-      />
-    );
-  }
-
   return (
     <View className="maze-word" style={{ background: config.bgGradient }}>
       <View className="maze-header">
@@ -249,74 +329,38 @@ export default function MazeWord() {
           <Text className="maze-header-btn-icon">✕</Text>
         </View>
         <View className="maze-header-title">
-          <Text className="maze-header-emoji">{config.emoji}</Text>
-          <Text className="maze-header-name">{config.name}</Text>
+          <Text className="maze-header-emoji">{worldEmoji}</Text>
+          <Text className="maze-header-name">{worldName}</Text>
         </View>
-        <View className="maze-header-btn" onClick={initGame}>
+        <View className="maze-header-btn" onClick={handleRestart}>
           <Text className="maze-header-btn-icon">↺</Text>
         </View>
       </View>
 
-      <View className="maze-items">
-        <View className="maze-items-card">
-          <View className="maze-items-section">
-            <View className="maze-items-label">
-              <Text className="maze-items-icon">🔧</Text>
-              <Text className="maze-items-text">工具</Text>
-            </View>
-            <View className="maze-items-list">
-              {selectedToolsDetails.length > 0 ? (
-                selectedToolsDetails.map((tool) => (
-                  <View key={tool.id} className="maze-item">
-                    <Text className="maze-item-emoji">{tool.emoji}</Text>
-                  </View>
-                ))
-              ) : (
-                <Text className="maze-items-empty">未携带</Text>
-              )}
-            </View>
-          </View>
-
-          <View className="maze-items-divider" />
-
-          <View className="maze-items-section">
-            <View className="maze-items-label">
-              <Text className="maze-items-icon">🍪</Text>
-              <Text className="maze-items-text">饲料</Text>
-            </View>
-            <View className="maze-items-list">
-              {selectedFeedsDetails.length > 0 ? (
-                selectedFeedsDetails.map((feed) => (
-                  <View key={feed.id} className="maze-item">
-                    <Text className="maze-item-emoji">{feed.emoji}</Text>
-                  </View>
-                ))
-              ) : (
-                <Text className="maze-items-empty">未携带</Text>
-              )}
-            </View>
-          </View>
-        </View>
+      <View className="maze-item-list-content">
+        <ScrollView className="maze-item-list-scroll" scrollX>
+          {[...toolsData, ...feedsData].length > 0
+            ? [...toolsData, ...feedsData].map((item) => (
+                <View key={item.id} className="maze-item-list-item">
+                  <ItemCard item={item} showCount={false} size="small" />
+                </View>
+              ))
+            : null}
+        </ScrollView>
       </View>
 
-      <View className="maze-stats">
+      {/* <View className="maze-stats">
         <View className="maze-stats-card">
           <View className="maze-stat">
-            <Text className="maze-stat-value">{collectedPets.length}</Text>
-            <Text className="maze-stat-label">宠物</Text>
+            <Text className="maze-stat-value">{collectedCount}</Text>
+            <Text className="maze-stat-label">已收集</Text>
           </View>
           <View className="maze-stat">
-            <Text className="maze-stat-value">{collectedTreasures.length}</Text>
-            <Text className="maze-stat-label">宝藏</Text>
-          </View>
-          <View className="maze-stat">
-            <Text className="maze-stat-value">
-              {treasures.filter((t) => !t.collected).length}
-            </Text>
+            <Text className="maze-stat-value">{collectItems.length}</Text>
             <Text className="maze-stat-label">剩余</Text>
           </View>
         </View>
-      </View>
+      </View> */}
 
       <View className="maze-container">
         <View className="maze-card">
@@ -325,11 +369,8 @@ export default function MazeWord() {
               <View key={y} className="maze-row">
                 {row.map((cell, x) => {
                   const isPlayer = playerPos.x === x && playerPos.y === y;
-                  const treasure = treasures.find(
-                    (t) => t.x === x && t.y === y && !t.collected,
-                  );
-                  const pet = pets.find(
-                    (p) => p.x === x && p.y === y && !p.collected,
+                  const collectItem = collectItems.find(
+                    (i) => i.x === x && i.y === y,
                   );
                   const isEnd = cell === 2;
                   const isWall = cell === 0;
@@ -340,8 +381,7 @@ export default function MazeWord() {
                       isWall={isWall}
                       isEnd={isEnd}
                       isPlayer={isPlayer}
-                      treasure={treasure}
-                      pet={pet}
+                      collectItem={collectItem}
                       wallColor={config.wallColor}
                       pathColor={config.pathColor}
                       playerEmoji={config.playerEmoji}
@@ -366,25 +406,21 @@ export default function MazeWord() {
       </View>
 
       <TreasureModal
-        visible={showTreasureModal}
-        treasure={currentTreasure}
-        onCollect={() => handleTreasureDecision(true)}
-        onSkip={() => handleTreasureDecision(false)}
-      />
-
-      <PetModal
-        visible={showPetModal}
-        pet={currentPet}
-        onCollect={() => handlePetDecision(true)}
-        onSkip={() => handlePetDecision(false)}
+        visible={showCollectModal}
+        itemType={currentCollectItem?.itemType || "animal"}
+        item={currentCollectItem?.item || null}
+        onCollect={handleCollect}
+        onSkip={handleSkip}
       />
 
       <WinModal
         visible={won}
-        worldName={config.name}
-        collectedPets={collectedPets}
-        collectedTreasures={collectedTreasures}
-        onPlayAgain={initGame}
+        worldName={worldName}
+        collectedCount={collectedCount}
+        // totalCount={collectItems.length}
+        totalCount={10}
+        onClose={() => setWon(false)}
+        onPlayAgain={handleRestart}
         onExit={handleExit}
       />
     </View>
