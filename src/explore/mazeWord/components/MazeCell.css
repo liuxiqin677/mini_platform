@@ -1,0 +1,35 @@
+.maze-cell {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.maze-cell-end {
+  box-shadow: 0 0 0 4rpx rgba(255, 140, 66, 0.5);
+}
+
+.maze-player {
+  font-size: 32rpx;
+  animation: pulse 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.maze-treasure {
+  font-size: 28rpx;
+}
+
+.maze-end {
+  font-size: 28rpx;
+}

@@ -1,0 +1,46 @@
+.explore-world {
+  min-height: 100vh;
+}
+
+.explore-header {
+  padding: 196rpx 32rpx 48rpx;
+}
+
+.explore-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1e293b;
+  display: block;
+}
+
+.explore-subtitle {
+  font-size: 28rpx;
+  color: #64748b;
+  display: block;
+  margin-top: 8rpx;
+}
+
+.explore-worlds {
+  padding: 0 32rpx;
+  margin-bottom: 32rpx;
+}
+
+.worlds-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24rpx;
+}
+
+.world-grid-item {
+  display: block;
+  border-radius: 24rpx;
+}
+
+.explore-items {
+  padding: 0 32rpx;
+  margin-bottom: 32rpx;
+}
+
+.explore-items-bottom {
+  margin-bottom: 0;
+}

@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python *)",
+      "Bash(curl -s http://localhost:8000/)",
+      "Bash(curl -s http://localhost:8000/api/v1/animal/list)",
+      "Bash(curl -s http://localhost:8000/api/v1/category/list)",
+      "Bash(curl -s http://localhost:8000/api/v1/rarity/list)",
+      "Bash(curl -s http://localhost:8000/example/bool)",
+      "Bash(curl -s http://localhost:8000/example/string)",
+      "Bash(curl -s http://localhost:8000/example/number)",
+      "Bash(curl -s \"http://localhost:8000/api/v1/animal/list?size=50\")",
+      "Bash(pip install *)",
+      "Bash(curl *)",
+      "Bash(del \"app\\\\models\\\\category.py\")",
+      "Bash(del \"app\\\\models\\\\rarity.py\")",
+      "Bash(del \"app\\\\models\\\\category.pyc\")",
+      "Bash(del \"app\\\\models\\\\rarity.pyc\")",
+      "Bash(rmdir /s /q \"app\\\\models\\\\__pycache__\")"
+    ]
+  }
+}

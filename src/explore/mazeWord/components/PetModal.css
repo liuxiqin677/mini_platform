@@ -1,0 +1,112 @@
+.pet-modal-mask {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 32rpx;
+}
+
+.pet-modal-content {
+  background-color: white;
+  border-radius: 48rpx;
+  padding: 48rpx;
+  width: 100%;
+  max-width: 600rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.2);
+  animation: zoomIn 0.2s ease;
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.pet-icon-wrapper {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 32rpx;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.15);
+}
+
+.pet-icon {
+  font-size: 80rpx;
+}
+
+.pet-info {
+  text-align: center;
+  margin-bottom: 48rpx;
+}
+
+.pet-name-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+  margin-bottom: 16rpx;
+}
+
+.pet-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.pet-rarity-tag {
+  padding: 8rpx 20rpx;
+  border-radius: 32rpx;
+}
+
+.pet-rarity-text {
+  color: white;
+  font-size: 24rpx;
+  font-weight: 600;
+}
+
+.pet-description {
+  font-size: 28rpx;
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.pet-actions {
+  display: flex;
+  gap: 24rpx;
+}
+
+.pet-btn {
+  flex: 1;
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 24rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border: none;
+  padding: 0;
+}
+
+.pet-btn::after {
+  border: none;
+}
+
+.pet-btn-skip {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.pet-btn-collect {
+  background-color: #ff8c42;
+  color: white;
+}

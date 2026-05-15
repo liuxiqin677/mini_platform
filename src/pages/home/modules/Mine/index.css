@@ -1,0 +1,132 @@
+.mine-page {
+  min-height: 100vh;
+  background-color: #FAF5F0;
+  padding-bottom: 180rpx;
+}
+
+.mine-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 190rpx 32rpx 60rpx;
+}
+
+.avatar-wrapper {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  margin-bottom: 24rpx;
+}
+
+.avatar {
+  font-size: 72rpx;
+}
+
+.username {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: #333333;
+  margin-bottom: 16rpx;
+}
+
+.level-badge {
+  background: linear-gradient(135deg, #FF9F66 0%, #FF6B4A 100%);
+  padding: 8rpx 24rpx;
+  border-radius: 20rpx;
+}
+
+.level-text {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22rpx;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.stats-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #FFFFFF;
+  margin: 0 32rpx;
+  padding: 40rpx 24rpx;
+  border-radius: 24rpx;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.stat-value {
+  font-size: 44rpx;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.stat-divider {
+  width: 1rpx;
+  height: 60rpx;
+  background-color: #EEEEEE;
+}
+
+.menu-list {
+  margin: 32rpx;
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-icon {
+  font-size: 40rpx;
+  margin-right: 24rpx;
+}
+
+.menu-text {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333333;
+}
+
+.menu-icon-right {
+  font-size: 36rpx;
+  margin-right: 16rpx;
+}
+
+.menu-count {
+  font-size: 26rpx;
+  color: #FF6B4A;
+  margin-right: 16rpx;
+}
+
+.menu-arrow {
+  font-size: 36rpx;
+  color: #CCCCCC;
+}

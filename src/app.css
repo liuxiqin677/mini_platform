@@ -1,0 +1,337 @@
+/* ========== 文本颜色类 ========== */
+.text-primary { color: #007AFF; }
+.text-success { color: #34C759; }
+.text-warning { color: #FF9500; }
+.text-error { color: #FF3B30; }
+.text-info { color: #5AC8FA; }
+.text-black { color: #000000; }
+.text-gray-900 { color: #1C1C1E; }
+.text-gray-800 { color: #2C2C2E; }
+.text-gray-700 { color: #3A3A3C; }
+.text-gray-600 { color: #4A4A4C; }
+.text-gray-500 { color: #636366; }
+.text-gray-400 { color: #8E8E93; }
+.text-gray-300 { color: #C7C7CC; }
+.text-gray-200 { color: #E5E5EA; }
+.text-gray-100 { color: #F2F2F7; }
+.text-white { color: #FFFFFF; }
+
+/* ========== 背景颜色类 ========== */
+.bg-primary { background-color: #007AFF; }
+.bg-success { background-color: #34C759; }
+.bg-warning { background-color: #FF9500; }
+.bg-error { background-color: #FF3B30; }
+.bg-info { background-color: #5AC8FA; }
+.bg-black { background-color: #000000; }
+.bg-gray-900 { background-color: #1C1C1E; }
+.bg-gray-800 { background-color: #2C2C2E; }
+.bg-gray-700 { background-color: #3A3A3C; }
+.bg-gray-600 { background-color: #4A4A4C; }
+.bg-gray-500 { background-color: #636366; }
+.bg-gray-400 { background-color: #8E8E93; }
+.bg-gray-300 { background-color: #C7C7CC; }
+.bg-gray-200 { background-color: #E5E5EA; }
+.bg-gray-100 { background-color: #F2F2F7; }
+.bg-white { background-color: #FFFFFF; }
+.bg-full {
+  height: 100vh;
+}
+
+/* ========== 主题背景色 ========== */
+.bg-theme-app { background-color: #FAF5F0; }
+.bg-theme-card { background-color: #FFFFFF; }
+.bg-theme-border { border-color: #FFB6A1; }
+
+/* ========== 字体大小类 ========== */
+.text-xs { font-size: 22rpx; }
+.text-sm { font-size: 24rpx; }
+.text-base { font-size: 28rpx; }
+.text-lg { font-size: 32rpx; }
+.text-xl { font-size: 36rpx; }
+.text-2xl { font-size: 40rpx; }
+.text-3xl { font-size: 48rpx; }
+
+/* ========== 字体粗细类 ========== */
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-bold { font-weight: 700; }
+
+/* ========== 文本对齐类 ========== */
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* ========== 文本装饰类 ========== */
+.text-underline { text-decoration: underline; }
+.text-line-through { text-decoration: line-through; }
+.text-no-underline { text-decoration: none; }
+
+/* ========== 文本溢出处理 ========== */
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.truncate-2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.truncate-3 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
+/* ========== 溢出类 ========== */
+.overflow-auto {
+  overflow: auto;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+
+/* ========== 间距类 ========== */
+.m-0 { margin: 0; }
+.m-xs { margin: 8rpx; }
+.m-sm { margin: 16rpx; }
+.m-md { margin: 24rpx; }
+.m-lg { margin: 32rpx; }
+.m-xl { margin: 48rpx; }
+.m-2xl { margin: 64rpx; }
+
+.mt-0 { margin-top: 0; }
+.mt-xs { margin-top: 8rpx; }
+.mt-sm { margin-top: 16rpx; }
+.mt-md { margin-top: 24rpx; }
+.mt-lg { margin-top: 32rpx; }
+.mt-xl { margin-top: 48rpx; }
+.mt-2xl { margin-top: 64rpx; }
+
+.mr-0 { margin-right: 0; }
+.mr-xs { margin-right: 8rpx; }
+.mr-sm { margin-right: 16rpx; }
+.mr-md { margin-right: 24rpx; }
+.mr-lg { margin-right: 32rpx; }
+.mr-xl { margin-right: 48rpx; }
+.mr-2xl { margin-right: 64rpx; }
+
+.mb-0 { margin-bottom: 0; }
+.mb-xs { margin-bottom: 8rpx; }
+.mb-sm { margin-bottom: 16rpx; }
+.mb-md { margin-bottom: 24rpx; }
+.mb-lg { margin-bottom: 32rpx; }
+.mb-xl { margin-bottom: 48rpx; }
+.mb-2xl { margin-bottom: 64rpx; }
+
+.ml-0 { margin-left: 0; }
+.ml-xs { margin-left: 8rpx; }
+.ml-sm { margin-left: 16rpx; }
+.ml-md { margin-left: 24rpx; }
+.ml-lg { margin-left: 32rpx; }
+.ml-xl { margin-left: 48rpx; }
+.ml-2xl { margin-left: 64rpx; }
+
+.p-0 { padding: 0; }
+.p-xs { padding: 8rpx; }
+.p-sm { padding: 16rpx; }
+.p-md { padding: 24rpx; }
+.p-lg { padding: 32rpx; }
+.p-xl { padding: 48rpx; }
+.p-2xl { padding: 64rpx; }
+
+.pt-0 { padding-top: 0; }
+.pt-xs { padding-top: 8rpx; }
+.pt-sm { padding-top: 16rpx; }
+.pt-md { padding-top: 24rpx; }
+.pt-lg { padding-top: 32rpx; }
+.pt-xl { padding-top: 48rpx; }
+.pt-2xl { padding-top: 64rpx; }
+
+.pr-0 { padding-right: 0; }
+.pr-xs { padding-right: 8rpx; }
+.pr-sm { padding-right: 16rpx; }
+.pr-md { padding-right: 24rpx; }
+.pr-lg { padding-right: 32rpx; }
+.pr-xl { padding-right: 48rpx; }
+.pr-2xl { padding-right: 64rpx; }
+
+.pb-0 { padding-bottom: 0; }
+.pb-xs { padding-bottom: 8rpx; }
+.pb-sm { padding-bottom: 16rpx; }
+.pb-md { padding-bottom: 24rpx; }
+.pb-lg { padding-bottom: 32rpx; }
+.pb-xl { padding-bottom: 48rpx; }
+.pb-2xl { padding-bottom: 64rpx; }
+
+.pl-0 { padding-left: 0; }
+.pl-xs { padding-left: 8rpx; }
+.pl-sm { padding-left: 16rpx; }
+.pl-md { padding-left: 24rpx; }
+.pl-lg { padding-left: 32rpx; }
+.pl-xl { padding-left: 48rpx; }
+.pl-2xl { padding-left: 64rpx; }
+
+/* ========== 圆角类 ========== */
+.radius-sm { border-radius: 8rpx; }
+.radius-md { border-radius: 16rpx; }
+.radius-lg { border-radius: 24rpx; }
+.radius-xl { border-radius: 32rpx; }
+.radius-full { border-radius: 9999rpx; }
+.radius-top-md { border-top-left-radius: 16rpx; border-top-right-radius: 16rpx; }
+.radius-bottom-md { border-bottom-left-radius: 16rpx; border-bottom-right-radius: 16rpx; }
+.radius-left-md { border-top-left-radius: 16rpx; border-bottom-left-radius: 16rpx; }
+.radius-right-md { border-top-right-radius: 16rpx; border-bottom-right-radius: 16rpx; }
+.radius-top-right-md { border-top-right-radius: 16rpx; }
+.radius-bottom-right-md { border-bottom-right-radius: 16rpx; }
+
+/* ========== 阴影类 ========== */
+.shadow-sm { box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.06); }
+.shadow-md { box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08); }
+.shadow-lg { box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.12); }
+
+/* ========== Flex 布局类 ========== */
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.flex-row { flex-direction: row; }
+.flex-wrap { flex-wrap: wrap; }
+
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.items-stretch { align-items: stretch; }
+
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.justify-evenly { justify-content: space-evenly; }
+
+.flex-1 { flex: 1; }
+.flex-auto { flex: auto; }
+.flex-none { flex: none; }
+
+/* ========== 显示隐藏类 ========== */
+.block { display: block; }
+.inline { display: inline; }
+.inline-block { display: inline-block; }
+.hidden { display: none; }
+
+/* ========== 定位类 ========== */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; }
+
+.top-0 { top: 0; }
+.right-0 { right: 0; }
+.bottom-0 { bottom: 0; }
+.left-0 { left: 0; }
+
+/* ========== 透明度类 ========== */
+.opacity-0 { opacity: 0; }
+.opacity-25 { opacity: 0.25; }
+.opacity-50 { opacity: 0.5; }
+.opacity-75 { opacity: 0.75; }
+.opacity-100 { opacity: 1; }
+
+/* ========== 光标类 ========== */
+.cursor-pointer { cursor: pointer; }
+.cursor-default { cursor: default; }
+
+/* ========== 用户选择类 ========== */
+.select-none { user-select: none; }
+.select-text { user-select: text; }
+.select-all { user-select: all; }
+
+/* ========== 过渡动画类 ========== */
+.transition-all {
+  transition-property: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+.transition-fast {
+  transition-duration: 0.15s;
+}
+
+.transition-slow {
+  transition-duration: 0.5s;
+}
+
+/* ========== 布局辅助类 ========== */
+.min-h-screen {
+  min-height: 100vh;
+}
+.h-screen {
+  height: 100vh;
+}
+.h-full {
+  height: 100%;
+}
+.w-full {
+  width: 100%;
+}
+.w-screen {
+  width: 100vw;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid-cols-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.gap-xs {
+  gap: 8rpx;
+}
+.gap-sm {
+  gap: 16rpx;
+}
+.gap-md {
+  gap: 24rpx;
+}
+.gap-xl {
+  gap: 48rpx;
+}
+
+/* ========== 页面定位========== */
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.page-bg {
+  background-color: #FAF5F0;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+/* Loading动画 */
+@keyframes loading {
+  0% {
+    width: 0%;
+    margin-left: 0%;
+  }
+  50% {
+    width: 60%;
+    margin-left: 20%;
+  }
+  100% {
+    width: 0%;
+    margin-left: 100%;
+  }
+}

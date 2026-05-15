@@ -1,0 +1,67 @@
+.world-card {
+  border-radius: 24rpx;
+  padding: 32rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: transform 0.2s ease;
+}
+
+.world-card:active {
+  transform: scale(0.95);
+}
+
+.world-card-full {
+  flex-direction: row;
+  align-items: center;
+  padding: 32rpx;
+  margin-top: 24rpx;
+  width: 100%;
+}
+
+.world-icon {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+}
+
+.world-emoji {
+  font-size: 48rpx;
+}
+
+.world-content {
+  margin-top: 24rpx;
+}
+
+.world-content-full {
+  margin-top: 0;
+  margin-left: 32rpx;
+  flex: 1;
+}
+
+.world-name {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.world-desc {
+  font-size: 24rpx;
+  color: #64748b;
+  margin-top: 8rpx;
+  display: block;
+}
+
+.world-arrow {
+  font-size: 48rpx;
+  color: #94a3b8;
+  font-weight: 300;
+}

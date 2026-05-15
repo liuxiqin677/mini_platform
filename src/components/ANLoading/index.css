@@ -1,0 +1,507 @@
+/* ==================== 主加载组件样式 ==================== */
+.an-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 48rpx 0;
+}
+
+.an-loading--fullscreen {
+  position: fixed;
+  inset: 0;
+  background-color: #ffffff;
+  z-index: 50;
+}
+
+.an-loading__pet-container {
+  position: relative;
+  margin-bottom: 48rpx;
+  width: 192rpx;
+  height: 192rpx;
+}
+
+.an-loading__ring {
+  position: absolute;
+  inset: 0;
+  width: 192rpx;
+  height: 192rpx;
+  border-radius: 50%;
+  border: 8rpx solid transparent;
+}
+
+.an-loading__ring--outer {
+  border-color: rgba(249, 115, 22, 0.2);
+  animation: an-spin 3s linear infinite;
+}
+
+.an-loading__ring--inner {
+  border-top-color: #f97316;
+  animation: an-spin 1s linear infinite;
+}
+
+.an-loading__pet {
+  position: relative;
+  width: 192rpx;
+  height: 192rpx;
+  border-radius: 50%;
+  background-color: #ffffff;
+  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: an-bounce 1s ease-in-out infinite;
+}
+
+.an-loading__pet-icon {
+  font-size: 80rpx;
+}
+
+.an-loading__message {
+  font-size: 32rpx;
+  font-weight: 500;
+  color: #1e293b;
+  margin-bottom: 16rpx;
+}
+
+.an-loading__dots {
+  display: flex;
+  gap: 12rpx;
+}
+
+.an-loading__dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: #f97316;
+  animation: an-bounce 1s ease-in-out infinite;
+}
+
+.an-loading__dot--1 {
+  animation-delay: 0ms;
+}
+
+.an-loading__dot--2 {
+  animation-delay: 150ms;
+}
+
+.an-loading__dot--3 {
+  animation-delay: 300ms;
+}
+
+/* ==================== 骨架屏通用样式 ==================== */
+.an-skeleton-card,
+.an-skeleton-world-card,
+.an-skeleton-profile__stats-card,
+.an-skeleton-profile__actions-card {
+  background-color: #ffffff;
+  border-radius: 32rpx;
+  padding: 32rpx;
+  animation: an-pulse 2s ease-in-out infinite;
+}
+
+.an-skeleton-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+  padding: 32rpx;
+}
+
+.an-skeleton-card__header,
+.an-skeleton-world-card,
+.an-skeleton-profile__action-item {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.an-skeleton-card__header {
+  margin-bottom: 24rpx;
+}
+
+.an-skeleton-card__avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+}
+
+.an-skeleton-card__info,
+.an-skeleton-world-card__info,
+.an-skeleton-profile__action-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.an-skeleton-card__line,
+.an-skeleton-world-card__line,
+.an-skeleton-explore__line,
+.an-skeleton-profile__line {
+  height: 24rpx;
+  background-color: #f1f5f9;
+  border-radius: 8rpx;
+}
+
+.an-skeleton-card__line--title {
+  width: 75%;
+}
+
+.an-skeleton-card__line--subtitle {
+  width: 50%;
+}
+
+.an-skeleton-card__line--full {
+  width: 100%;
+  margin-bottom: 16rpx;
+}
+
+.an-skeleton-card__line--partial {
+  width: 66.666%;
+}
+
+/* ==================== 世界卡片骨架屏 ==================== */
+.an-skeleton-world-card {
+  padding: 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.an-skeleton-world-card__icon {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 24rpx;
+  background-color: #f1f5f9;
+}
+
+.an-skeleton-world-card__line--title {
+  width: 50%;
+  height: 32rpx;
+}
+
+.an-skeleton-world-card__line--subtitle {
+  width: 75%;
+}
+
+.an-skeleton-world-card__arrow {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+}
+
+/* ==================== 探索页面骨架屏 ==================== */
+.an-skeleton-explore {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding-bottom: 192rpx;
+}
+
+.an-skeleton-explore__header {
+  padding: 32rpx;
+  padding-top: 64rpx;
+}
+
+.an-skeleton-explore__line--title {
+  width: 33.333%;
+  height: 64rpx;
+  margin-bottom: 16rpx;
+}
+
+.an-skeleton-explore__line--subtitle {
+  width: 66.666%;
+  height: 32rpx;
+}
+
+.an-skeleton-explore__section {
+  padding: 0 32rpx;
+  margin-bottom: 48rpx;
+}
+
+.an-skeleton-explore__line--section-title {
+  width: 25%;
+  height: 32rpx;
+  margin-bottom: 24rpx;
+}
+
+.an-skeleton-explore__worlds {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.an-skeleton-explore__grid {
+  padding: 0 32rpx;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24rpx;
+}
+
+.an-skeleton-explore__grid-item {
+  background-color: #ffffff;
+  border-radius: 32rpx;
+  padding: 32rpx;
+  animation: an-pulse 2s ease-in-out infinite;
+}
+
+.an-skeleton-explore__icons {
+  display: flex;
+  gap: 16rpx;
+}
+
+.an-skeleton-explore__icon-item {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 16rpx;
+  background-color: #f1f5f9;
+}
+
+/* ==================== 我的页面骨架屏 ==================== */
+.an-skeleton-profile {
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding-bottom: 192rpx;
+}
+
+.an-skeleton-profile__user {
+  padding: 48rpx;
+  padding-top: 96rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.an-skeleton-profile__avatar {
+  width: 160rpx;
+  height: 160rpx;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  margin-bottom: 24rpx;
+  animation: an-pulse 2s ease-in-out infinite;
+}
+
+.an-skeleton-profile__line--name {
+  width: 96rpx;
+  height: 48rpx;
+  margin-bottom: 16rpx;
+}
+
+.an-skeleton-profile__line--desc {
+  width: 128rpx;
+}
+
+.an-skeleton-profile__stats {
+  padding: 0 32rpx;
+  margin-bottom: 48rpx;
+}
+
+.an-skeleton-profile__stats-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32rpx;
+}
+
+.an-skeleton-profile__stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.an-skeleton-profile__stat-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  margin-bottom: 16rpx;
+}
+
+.an-skeleton-profile__line--stat-value {
+  width: 64rpx;
+  height: 40rpx;
+  margin-bottom: 8rpx;
+}
+
+.an-skeleton-profile__line--stat-label {
+  width: 96rpx;
+}
+
+.an-skeleton-profile__actions {
+  padding: 0 32rpx;
+}
+
+.an-skeleton-profile__actions-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.an-skeleton-profile__action-item {
+  padding: 32rpx;
+  border-bottom: 2rpx solid #f1f5f9;
+}
+
+.an-skeleton-profile__action-item:last-child {
+  border-bottom: none;
+}
+
+.an-skeleton-profile__action-icon {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 24rpx;
+  background-color: #f1f5f9;
+}
+
+.an-skeleton-profile__line--action-title {
+  width: 33.333%;
+  height: 40rpx;
+  margin-bottom: 4rpx;
+}
+
+.an-skeleton-profile__line--action-desc {
+  width: 50%;
+}
+
+.an-skeleton-profile__action-arrow {
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 8rpx;
+  background-color: #f1f5f9;
+}
+
+/* ==================== 迷宫加载页面 ==================== */
+.an-maze-loading {
+  position: fixed;
+  inset: 0;
+  background-color: #ffffff;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.an-maze-loading__world-container {
+  position: relative;
+  margin-bottom: 64rpx;
+  width: 256rpx;
+  height: 256rpx;
+}
+
+.an-maze-loading__ring {
+  position: absolute;
+  border-radius: 50%;
+  animation: an-ping 1s ease-in-out infinite;
+}
+
+.an-maze-loading__ring--outer {
+  inset: 0;
+  width: 256rpx;
+  height: 256rpx;
+  background-color: rgba(249, 115, 22, 0.1);
+}
+
+.an-maze-loading__ring--inner {
+  inset: 16rpx;
+  width: 224rpx;
+  height: 224rpx;
+  background-color: rgba(249, 115, 22, 0.2);
+  animation-delay: 300ms;
+}
+
+.an-maze-loading__world {
+  position: relative;
+  width: 256rpx;
+  height: 256rpx;
+  border-radius: 50%;
+  box-shadow: 0 16rpx 48rpx rgba(0, 0, 0, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.an-maze-loading__world-icon {
+  font-size: 120rpx;
+  animation: an-pulse 2s ease-in-out infinite;
+}
+
+.an-maze-loading__title {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 8rpx;
+}
+
+.an-maze-loading__world-name {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #f97316;
+  margin-bottom: 32rpx;
+}
+
+.an-maze-loading__progress-bar {
+  width: 384rpx;
+  height: 16rpx;
+  background-color: #f1f5f9;
+  border-radius: 16rpx;
+  overflow: hidden;
+  margin-bottom: 32rpx;
+}
+
+.an-maze-loading__progress-fill {
+  height: 100%;
+  background-color: #f97316;
+  border-radius: 16rpx;
+  animation: an-loading 1.5s ease-in-out infinite;
+}
+
+.an-maze-loading__hint {
+  font-size: 28rpx;
+  color: #64748b;
+}
+
+/* ==================== 动画定义 ==================== */
+@keyframes an-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes an-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20rpx);
+  }
+}
+
+@keyframes an-pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+@keyframes an-ping {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  75%, 100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+@keyframes an-loading {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(384rpx);
+  }
+}

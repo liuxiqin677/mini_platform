@@ -1,0 +1,68 @@
+.list-header {
+  padding: 32rpx;
+  background-color: white;
+  margin-bottom: 24rpx;
+}
+
+.header-info {
+  display: flex;
+  align-items: center;
+}
+
+.header-icon-wrapper {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 24rpx;
+}
+
+.header-icon {
+  font-size: 48rpx;
+}
+
+.header-content {
+  flex: 1;
+}
+
+.header-name {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 4rpx;
+}
+
+.header-description {
+  font-size: 26rpx;
+  color: #64748B;
+  margin-bottom: 12rpx;
+  margin-left: 12rpx;
+}
+
+.header-progress {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.header-progress-text {
+  font-size: 24rpx;
+  color: #F97316;
+  font-weight: 500;
+}
+
+.header-progress-bar {
+  flex: 1;
+  height: 10rpx;
+  background-color: #f1f5f9;
+  border-radius: 5rpx;
+  overflow: hidden;
+}
+
+.header-progress-bar-fill {
+  height: 100%;
+  background-color: #F97316;
+  border-radius: 5rpx;
+}

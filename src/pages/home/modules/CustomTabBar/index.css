@@ -1,0 +1,43 @@
+.tabbar-wrapper {
+  box-shadow: 0 8px 32px rgba(255, 143, 163, 0.25);
+  background-color: #ffffff;
+  width: 100%;
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.tabbar-container {
+  padding-top: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 36rpx;
+}
+
+.tabbar-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.tabbar-item-active {
+  border-radius: 60rpx;
+  background-color: #e97c481a;
+  padding: 20rpx 40rpx;
+}
+
+.tabbar-icon {
+  font-size: 40rpx;
+  margin-bottom: 6rpx;
+}
+
+.tabbar-text {
+  font-size: 22rpx;
+  color: #8e8e93;
+}
+
+.tabbar-text-active {
+  color: #ff6b4a;
+  font-weight: 500;
+  white-space: nowrap;
+}

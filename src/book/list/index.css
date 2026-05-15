@@ -1,0 +1,15 @@
+.book-list-page {
+  min-height: 100vh;
+  background-color: #F5F0EB;
+  padding-bottom: 60rpx;
+}
+
+.book-list-content {
+  padding: 0 32rpx;
+}
+
+.book-list-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}

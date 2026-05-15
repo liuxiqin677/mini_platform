@@ -1,0 +1,167 @@
+/* ========== ANButton 基础样式 ========== */
+.an-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 500;
+  border-radius: 16rpx;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.an-button__text {
+  display: inline-flex;
+  align-items: center;
+}
+
+/* ========== 尺寸样式 ========== */
+.an-button--xs {
+  height: 64rpx;
+  padding: 0 24rpx;
+  font-size: 22rpx;
+}
+
+.an-button--sm {
+  height: 80rpx;
+  padding: 0 32rpx;
+  font-size: 24rpx;
+}
+
+.an-button--md {
+  height: 96rpx;
+  padding: 0 48rpx;
+  font-size: 28rpx;
+}
+
+.an-button--lg {
+  height: 112rpx;
+  padding: 0 64rpx;
+  font-size: 32rpx;
+}
+
+.an-button--xl {
+  height: 128rpx;
+  padding: 0 80rpx;
+  font-size: 36rpx;
+}
+
+/* ========== 圆角样式 ========== */
+.an-button--rounded {
+  border-radius: 50%;
+}
+
+/* ========== 变体样式 ========== */
+/* 主要按钮 */
+.an-button--primary {
+  background-color: #FF8C42;
+  color: #FFFFFF;
+}
+
+.an-button--primary:active:not(:disabled) {
+  background-color: #E57B36;
+}
+
+/* 次要按钮 */
+.an-button--secondary {
+  background-color: #7ED9D2;
+  color: #FFFFFF;
+}
+
+.an-button--secondary:active:not(:disabled) {
+  background-color: #6BC4BC;
+}
+
+/* 强调按钮 */
+.an-button--accent {
+  background-color: #52C41A;
+  color: #FFFFFF;
+}
+
+.an-button--accent:active:not(:disabled) {
+  background-color: #43A817;
+}
+
+/* 轮廓按钮 */
+.an-button--outline {
+  background-color: transparent;
+  color: #FF8C42;
+  border: 2rpx solid #FF8C42;
+}
+
+.an-button--outline:active:not(:disabled) {
+  background-color: rgba(255, 140, 66, 0.1);
+}
+
+/* 幽灵按钮 */
+.an-button--ghost {
+  background-color: transparent;
+  color: #636366;
+}
+
+.an-button--ghost:active:not(:disabled) {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* 软色按钮 */
+.an-button--soft {
+  background-color: #FFE4D8;
+  color: #FF8C42;
+}
+
+.an-button--soft:active:not(:disabled) {
+  background-color: #FFD5C4;
+}
+
+/* 链接按钮 */
+.an-button--link {
+  background-color: transparent;
+  color: #007AFF;
+  text-decoration: underline;
+}
+
+.an-button--link:active:not(:disabled) {
+  color: #0066CC;
+}
+
+/* 危险按钮 */
+.an-button--danger {
+  background-color: #FF4D4F;
+  color: #FFFFFF;
+}
+
+.an-button--danger:active:not(:disabled) {
+  background-color: #D9363E;
+}
+
+/* ========== 状态样式 ========== */
+.an-button--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.an-button--loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.an-button__loading {
+  margin-right: 12rpx;
+}
+
+.an-button__loading-icon {
+  font-size: 28rpx;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

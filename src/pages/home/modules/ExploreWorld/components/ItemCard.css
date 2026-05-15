@@ -1,0 +1,106 @@
+.item-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 128rpx;
+  flex-shrink: 0;
+}
+
+.item-card-selectable {
+  width: 100%;
+  position: relative;
+  padding: 24rpx;
+  border-radius: 24rpx;
+  background-color: #f1f5f9;
+  border: 4rpx solid transparent;
+  box-sizing: border-box;
+}
+
+.item-card-selected {
+  background-color: rgba(255, 140, 66, 0.08);
+  border-color: #ff8c42;
+}
+
+.item-check {
+  position: absolute;
+  top: 16rpx;
+  right: 16rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: #ff8c42;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-check-icon {
+  color: white;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+.item-icon-wrapper {
+  width: 112rpx;
+  height: 112rpx;
+  border-radius: 24rpx;
+  background-color: #f1f5f9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.item-card-selectable .item-icon-wrapper {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 20rpx;
+  background-color: transparent;
+}
+
+.item-emoji {
+  font-size: 48rpx;
+}
+
+.item-card-selectable .item-emoji {
+  font-size: 40rpx;
+}
+
+.item-count {
+  position: absolute;
+  top: -8rpx;
+  right: -8rpx;
+  width: 40rpx;
+  height: 40rpx;
+  border-radius: 50%;
+  background-color: #ff8c42;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.item-count-text {
+  color: white;
+  font-size: 20rpx;
+  font-weight: 600;
+}
+
+.item-name {
+  font-size: 24rpx;
+  color: #64748b;
+  margin-top: 16rpx;
+  text-align: center;
+}
+
+.item-card-selectable .item-name {
+  color: #1e293b;
+  font-weight: 500;
+  margin-top: 8rpx;
+}
+
+.item-count-label {
+  font-size: 24rpx;
+  color: #64748b;
+  margin-top: 4rpx;
+}

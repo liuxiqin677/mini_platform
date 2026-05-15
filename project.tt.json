@@ -1,0 +1,9 @@
+{
+  "miniprogramRoot": "./",
+  "projectname": "front",
+  "appid": "wx9946fe12a830f189",
+  "setting": {
+    "es6": false,
+    "minified": false
+  }
+}

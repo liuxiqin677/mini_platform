@@ -1,0 +1,21 @@
+.direction-button {
+  width: 96rpx;
+  height: 96rpx;
+  border-radius: 24rpx;
+  background-color: white;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+}
+
+.direction-button:active {
+  transform: scale(0.95);
+}
+
+.direction-icon {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #1e293b;
+}

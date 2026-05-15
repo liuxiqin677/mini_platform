@@ -1,0 +1,107 @@
+.win-modal-mask {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 32rpx;
+}
+
+.win-modal-content {
+  background-color: white;
+  border-radius: 48rpx;
+  padding: 48rpx;
+  width: 100%;
+  max-width: 600rpx;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.win-celebration {
+  font-size: 120rpx;
+  display: block;
+  margin-bottom: 32rpx;
+}
+
+.win-title {
+  font-size: 40rpx;
+  font-weight: 700;
+  color: #1e293b;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.win-description {
+  font-size: 28rpx;
+  color: #64748b;
+  display: block;
+  margin-bottom: 32rpx;
+}
+
+.win-treasures {
+  margin-bottom: 48rpx;
+}
+
+.win-treasures-label {
+  font-size: 28rpx;
+  color: #64748b;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.win-treasures-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  justify-content: center;
+}
+
+.win-treasure-item {
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  padding: 12rpx 20rpx;
+  background-color: #f1f5f9;
+  border-radius: 16rpx;
+}
+
+.win-treasure-emoji {
+  font-size: 28rpx;
+}
+
+.win-treasure-name {
+  font-size: 24rpx;
+  color: #1e293b;
+}
+
+.win-actions {
+  display: flex;
+  gap: 24rpx;
+  justify-content: center;
+}
+
+.win-btn {
+  height: 96rpx;
+  line-height: 96rpx;
+  border-radius: 24rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border: none;
+  padding: 0 48rpx;
+}
+
+.win-btn::after {
+  border: none;
+}
+
+.win-btn-again {
+  background-color: #f1f5f9;
+  color: #1e293b;
+}
+
+.win-btn-exit {
+  background-color: #ff8c42;
+  color: white;
+}
