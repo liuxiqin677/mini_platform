@@ -2,7 +2,6 @@ import { Button, ScrollView, Text, View } from "@tarojs/components";
 import { UserFoodItem } from "../../../../../services/food";
 import { UserToolItem } from "../../../../../services/tool";
 import { WorldItem } from "../../../../../services/world";
-import { convertToItemWithSingle } from "../utils";
 import Empty from "./Empty";
 import "./ExploreModal.css";
 import ItemCard from "./ItemCard";
@@ -71,7 +70,7 @@ export default function ExploreModal({
                 {tools.map((tool) => (
                   <View key={tool.id} className="modal-grid-item">
                     <ItemCard
-                      item={convertToItemWithSingle(tool)}
+                      item={tool}
                       selected={Boolean(selectedTools.find(t => t.id === tool.id))}
                       onClick={() => onToggleTool(tool)}
                       selectable
@@ -99,7 +98,7 @@ export default function ExploreModal({
                 {feeds.map((feed) => (
                   <View key={feed.id} className="modal-grid-item">
                     <ItemCard
-                      item={convertToItemWithSingle(feed)}
+                      item={feed}
                       selected={Boolean(selectedFeeds.find(f => f.id === feed.id))}
                       onClick={() => onToggleFeed(feed)}
                       selectable

@@ -1,14 +1,14 @@
 import { ScrollView, Text, View } from "@tarojs/components";
 import { ReactNode } from "react";
 import { SkeletonCard } from "../../../../../components/ANLoading/index";
-import { Item } from "../types";
+import { UserFoodItem, UserToolItem } from "../../../../../services/index";
 import Empty from "./Empty";
 import ItemCard from "./ItemCard";
 import "./ItemList.css";
 
 interface ItemListProps {
   loading?: boolean
-  items: Item[];
+  items: (UserToolItem | UserFoodItem)[];
   title: ReactNode;
   icon: string;
 }

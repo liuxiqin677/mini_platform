@@ -8,7 +8,6 @@ import ExploreModal from "./components/ExploreModal";
 import ItemList from "./components/ItemList";
 import WorldCard from "./components/WorldCard";
 import "./index.css";
-import { convertToItem } from "./utils";
 
 export default function ExploreWorld() {
   const [showModal, setShowModal] = useState(false);
@@ -126,7 +125,7 @@ export default function ExploreWorld() {
           loading={loading}
           title="探索工具"
           icon="🔧"
-          items={convertToItem(tools)}
+          items={tools}
         />
       </View>
 
@@ -135,7 +134,7 @@ export default function ExploreWorld() {
           loading={loading}
           title="携带饲料"
           icon="🍪"
-          items={convertToItem(foods)}
+          items={foods}
         />
       </View>
 
