@@ -97,3 +97,11 @@ export const deleteTool = (toolId: number) => {
     data: { tool_id: toolId },
   });
 };
+
+export const useTool = (toolId: number) => {
+  return request<boolean>({
+    url: "user/collect/tool/use",
+    method: "POST",
+    data: { tool_id: toolId },
+  });
+};

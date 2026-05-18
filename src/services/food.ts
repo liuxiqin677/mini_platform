@@ -97,3 +97,11 @@ export const deleteFood = (foodId: number) => {
     data: { food_id: foodId },
   });
 };
+
+export const useFood = (foodId: number) => {
+  return request<boolean>({
+    url: "user/collect/food/use",
+    method: "POST",
+    data: { food_id: foodId },
+  });
+};

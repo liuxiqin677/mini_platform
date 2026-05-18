@@ -1,3 +1,6 @@
+import { ToolItem, UserToolItem } from "../../../services/tool"
+import { CollectItem } from "../types"
+
 export function generateMaze(width: number, height: number): number[][] {
   const maze: number[][] = Array(height).fill(null).map(() => Array(width).fill(0))
 
@@ -42,3 +45,12 @@ export function generateMaze(width: number, height: number): number[][] {
 
   return maze
 }
+
+export function hasCommonElement(arr1: ToolItem[], arr2: UserToolItem[]): boolean {
+  return arr1.some(item => arr2.some(tool => tool.tool_id === item.id));
+}
+
+export const hasRightTool = (item: CollectItem, toolsData: UserToolItem[]) => {
+  console.log(item, toolsData)
+  return hasCommonElement(item.tools || [], toolsData);
+};

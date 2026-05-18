@@ -1,6 +1,6 @@
 import { View, Text } from '@tarojs/components'
 import type { BookItem } from '../types'
-import { rarityColors } from '../constants'
+import { rarityColors, rarityLabels } from '../constants'
 import './BookItemCard.css'
 
 interface BookItemCardProps {
@@ -20,7 +20,7 @@ export default function BookItemCard({ item }: BookItemCardProps) {
       </View>
       <Text className='book-item-name'>{item.name}</Text>
       <View className='book-item-rarity' style={{ backgroundColor: rarityColors[item.rarity] }}>
-        <Text>{item.rarity}</Text>
+        <Text>{rarityLabels[item.rarity]}</Text>
       </View>
       <Text className='book-item-description'>{item.description}</Text>
     </View>

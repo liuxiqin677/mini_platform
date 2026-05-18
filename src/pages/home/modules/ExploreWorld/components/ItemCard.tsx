@@ -1,9 +1,9 @@
 import { Text, View } from "@tarojs/components";
-import { Item } from "../types";
+import { UserFoodItem, UserToolItem } from "../../../../../services/index";
 import "./ItemCard.css";
 
 interface ItemCardProps {
-  item: Item;
+  item: UserToolItem | UserFoodItem;
   selected?: boolean;
   showCount?: boolean;
   onClick?: () => void;

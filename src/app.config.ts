@@ -20,6 +20,8 @@ export default defineAppConfig({
       root: 'book',
       pages: [
         'list/index',
+        'animalAndPlantList/index',
+        'PlantsAndFoodList/index',
       ],
     }
   ],

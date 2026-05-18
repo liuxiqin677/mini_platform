@@ -50,14 +50,14 @@ export const request = <T = any>(
               title: "登录过期，请重新登录",
               icon: "none",
               duration: 2000,
+              complete() {
+                Taro.removeStorageSync("token");
+                Taro.redirectTo({
+                  url: "/pages/login/index",
+                });
+                isRedirectingToLogin = false;
+              },
             });
-            setTimeout(() => {
-              Taro.removeStorageSync("token");
-              Taro.redirectTo({
-                url: "/pages/login/index",
-              });
-              isRedirectingToLogin = false;
-            }, 2000);
           }
           reject(new Error("登录过期，请重新登录"));
           return;
@@ -73,14 +73,14 @@ export const request = <T = any>(
                 title: "登录过期，请重新登录",
                 icon: "none",
                 duration: 2000,
+                complete() {
+                  Taro.removeStorageSync("token");
+                  Taro.redirectTo({
+                    url: "/pages/login/index",
+                  });
+                  isRedirectingToLogin = false;
+                },
               });
-              setTimeout(() => {
-                Taro.removeStorageSync("token");
-                Taro.redirectTo({
-                  url: "/pages/login/index",
-                });
-                isRedirectingToLogin = false;
-              }, 2000);
             }
             reject(new Error("登录过期，请重新登录"));
             return;

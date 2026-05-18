@@ -81,6 +81,23 @@
   line-height: 1.6;
 }
 
+.treasure-warning {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.treasure-warning-title {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #ff8c42;
+}
+.treasure-warning-item {
+  font-size: 28rpx;
+  font-weight: 600;
+  color: #64748b;
+}
+
 .treasure-actions {
   display: flex;
   gap: 24rpx;

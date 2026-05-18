@@ -1,0 +1,133 @@
+.tool-food-page {
+  min-height: 100vh;
+  background-color: #FAF5F0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  padding: 60rpx 32rpx 32rpx;
+  background-color: #FAF5F0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.back-btn {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.08);
+}
+
+.header-title {
+  flex: 1;
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #333333;
+}
+
+.header-count {
+  width: 120rpx;
+  text-align: right;
+  font-size: 26rpx;
+  color: #999999;
+}
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 24rpx 32rpx;
+}
+
+.rarity-section {
+  margin-bottom: 32rpx;
+}
+
+.rarity-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.rarity-label {
+  font-size: 26rpx;
+  font-weight: 600;
+  padding: 8rpx 20rpx;
+  border-radius: 24rpx;
+  color: white;
+}
+
+.rarity-count {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.tools-item-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16rpx;
+}
+
+.tools-item-card {
+  background-color: #ffffff;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  border: 3rpx solid;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.04);
+}
+
+.tools-item-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.tools-item-emoji {
+  font-size: 56rpx;
+}
+
+.tools-item-count-badge {
+  background-color: #F5F5F5;
+  padding: 6rpx 14rpx;
+  border-radius: 16rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #666666;
+}
+
+.tools-item-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #333333;
+  margin-bottom: 8rpx;
+}
+
+.tools-item-description {
+  font-size: 24rpx;
+  color: #999999;
+  line-height: 1.4;
+}
+
+.loading-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999999;
+}

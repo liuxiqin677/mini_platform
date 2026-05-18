@@ -14,3 +14,11 @@ export interface BookCategory {
   description: string
   bgColor: string
 }
+
+export interface IRouterParams {
+  categoryId: "animal_mammal" | 'animal_wildlife' | 'animal_bird' | 'animal_reptile' | 'animal_ocean' | 'plants' | 'tools' | 'foods'
+  categoryName?: string
+  categoryEmoji?: string
+  categoryDescription?: string
+  categoryBgColor?: string
+}

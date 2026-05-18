@@ -1,3 +1,5 @@
+import { ToolItem } from "../../services/tool";
+
 export interface Item {
   id: string;
   name: string;
@@ -12,6 +14,7 @@ export interface CollectItem {
   name: string;
   emoji: string;
   description: string;
+  tools?: ToolItem[];
   rarity: "common" | "rare" | "epic" | "legendary";
 }
 

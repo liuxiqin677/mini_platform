@@ -59,22 +59,24 @@ const Mine = () => {
 
       {/* 功能列表 */}
       <View className="menu-list">
-        <View className="menu-item">
+        <View className="menu-item" onClick={() => Taro.navigateTo({ url: '/book/animalAndPlantList/index?type=animal' })}>
           <View className="menu-icon">🐾</View>
-          <Text className="menu-text">我的宠物</Text>
-          <Text className="menu-count">{userDetail?.pet_count}只</Text>
+          <Text className="menu-text">我的动物</Text>
           <Text className="menu-arrow">›</Text>
         </View>
-        <View className="menu-item">
+        <View className="menu-item" onClick={() => Taro.navigateTo({ url: '/book/animalAndPlantList/index?type=plant' })}>
+          <View className="menu-icon">🌱</View>
+          <Text className="menu-text">我的植物</Text>
+          <Text className="menu-arrow">›</Text>
+        </View>
+        <View className="menu-item" onClick={() => Taro.navigateTo({ url: '/book/PlantsAndFoodList/index?type=food' })}>
           <View className="menu-icon">🍖</View>
           <Text className="menu-text">我的饲料</Text>
-          <Text className="menu-count">{userDetail?.food_count}份</Text>
           <Text className="menu-arrow">›</Text>
         </View>
-        <View className="menu-item">
+        <View className="menu-item" onClick={() => Taro.navigateTo({ url: '/book/PlantsAndFoodList/index?type=tool' })}>
           <View className="menu-icon">⛏️</View>
           <Text className="menu-text">我的工具</Text>
-          <Text className="menu-count">{userDetail?.tool_count}个</Text>
           <Text className="menu-arrow">›</Text>
         </View>
       </View>

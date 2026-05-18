@@ -1,4 +1,6 @@
 import { request } from "../utils/request";
+import { FoodItem } from "./food";
+import { ToolItem } from "./tool";
 
 export interface PlantItem {
   id: number;
@@ -8,7 +10,9 @@ export interface PlantItem {
   rarity: string;
   is_collected: boolean;
   favorite_food_ids?: number[];
+  foods: FoodItem[];
   tool_ids?: number[];
+  tools: ToolItem[];
   world_ids?: number[];
   created_at?: string;
   updated_at?: string;
@@ -19,6 +23,8 @@ export interface UserPlantItem {
   user_id: number;
   plant_id: number;
   name: string;
+  original_name: string;
+  emoji: string;
   description?: string;
   rarity: string;
   created_at: string;

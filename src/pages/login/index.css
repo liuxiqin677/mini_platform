@@ -7,6 +7,7 @@
   align-items: center;
   padding-top: 120rpx;
   box-sizing: border-box;
+  position: relative;
 }
 
 /* Logo区域 */
@@ -15,21 +16,98 @@
   flex-direction: column;
   align-items: center;
   margin-bottom: 80rpx;
+  padding-top: 120rpx;
+  padding-bottom: 48rpx;
+  flex-shrink: 0;
+  transition: all 700ms ease;
+}
+
+.login-header--compact {
+  padding-top: 80rpx;
+  padding-bottom: 24rpx;
+  margin-bottom: 40rpx;
 }
 
 .logo-wrapper {
   width: 180rpx;
   height: 180rpx;
-  background-color: #FFE4D8;
-  border-radius: 50%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 32rpx;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 700ms ease-out;
+}
+
+.logo-wrapper--visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.logo-wrapper--compact {
+  width: 140rpx;
+  height: 140rpx;
+  margin-bottom: 20rpx;
+}
+
+.logo-pulse {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 140, 66, 0.2);
+  border-radius: 50%;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+.logo-inner {
+  position: relative;
+  z-index: 1;
+  width: 140rpx;
+  height: 140rpx;
+  background-color: rgba(255, 140, 66, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-wrapper--compact .logo-inner {
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .logo-icon {
   font-size: 80rpx;
+  transition: all 700ms ease;
+}
+
+.logo-wrapper--compact .logo-icon {
+  font-size: 60rpx;
+}
+
+.logo-halo {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 140, 66, 0.3);
+  transition: all 1000ms ease;
+}
+
+.logo-halo--animating {
+  transform: scale(1.25);
+  opacity: 0;
 }
 
 .app-title {
@@ -37,20 +115,65 @@
   font-weight: 700;
   color: #1C1C1E;
   margin-bottom: 16rpx;
+  opacity: 0;
+  transform: translateY(16rpx);
+  transition: all 500ms ease;
+}
+
+.app-title--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.app-title--compact {
+  font-size: 36rpx;
+  margin-bottom: 8rpx;
 }
 
 .app-subtitle {
   font-size: 28rpx;
   color: #8E8E93;
+  opacity: 0;
+  transform: translateY(16rpx);
+  transition: all 500ms ease;
+}
+
+.app-subtitle--visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.app-subtitle--compact {
+  font-size: 24rpx;
+}
+
+/* 登录卡片包装器 */
+.login-card-wrapper {
+  flex: 1;
+  width: 100%;
+  padding: 0 48rpx;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(32rpx);
+  pointer-events: none;
+  transition: all 700ms ease;
+}
+
+.login-card-wrapper--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 /* 登录卡片 */
 .login-card {
-  width: 70%;
+  width: 100%;
+  max-width: 500rpx;
+  margin: 0 auto;
   background-color: #FFFFFF;
-  border-radius: 32rpx;
+  border-radius: 48rpx;
   padding: 48rpx;
-  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8rpx 48rpx rgba(0, 0, 0, 0.08);
 }
 
 .card-header {
@@ -88,7 +211,7 @@
   display: flex;
   align-items: center;
   background-color: #F2F2F7;
-  border-radius: 16rpx;
+  border-radius: 24rpx;
   padding: 0 24rpx;
   height: 96rpx;
 }
@@ -129,6 +252,8 @@
   border-radius: 48rpx;
   border: none;
   margin-top: 16rpx;
+  box-shadow: 0 8rpx 24rpx rgba(255, 107, 74, 0.3);
+  transition: all 200ms ease;
 }
 
 .login-btn::after {
@@ -143,4 +268,17 @@
 
 .login-btn:active {
   opacity: 0.8;
+  transform: scale(0.98);
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 74, 0.2);
+}
+
+/* 介绍遮罩 */
+.intro-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(250, 245, 240, 0.8);
+  backdrop-filter: blur(4rpx);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease;
 }

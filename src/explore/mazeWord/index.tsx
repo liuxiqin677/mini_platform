@@ -4,9 +4,9 @@ import { useCallback, useEffect, useState } from "react";
 import MazeLoading from "../../components/ANLoading/MazeLoading";
 import ItemCard from "../../pages/home/modules/ExploreWorld/components/ItemCard";
 import { collectAnimal } from "../../services/animal";
-import { collectFood } from "../../services/food";
+import { collectFood, useFood, UserFoodItem } from "../../services/food";
 import { collectPlant } from "../../services/plant";
-import { collectTool } from "../../services/tool";
+import { collectTool, UserToolItem, useTool } from "../../services/tool";
 import { getWorldDetail, WorldDetail } from "../../services/world";
 import {
   DirectionButton,
@@ -45,6 +45,7 @@ const initializeGame = (
         emoji: animal.emoji,
         description: animal.description,
         rarity: animal.rarity as any,
+        tools: animal.tools,
       },
     });
   });
@@ -59,6 +60,7 @@ const initializeGame = (
         emoji: plant.emoji,
         description: plant.description,
         rarity: plant.rarity as any,
+        tools: plant.tools,
       },
     });
   });
@@ -134,8 +136,8 @@ export default function MazeWord() {
     tools,
     feeds,
   } = router.params as Record<string, string>;
-  const toolsData = JSON.parse(decodeURIComponent(tools || "[]")) || [];
-  const feedsData = JSON.parse(decodeURIComponent(feeds || "[]")) || [];
+  const toolsData: UserToolItem[] = JSON.parse(decodeURIComponent(tools || "[]")) || [];
+  const feedsData: UserFoodItem[] = JSON.parse(decodeURIComponent(feeds || "[]")) || [];
 
   const config =
     worldConfigs[worldId as keyof typeof worldConfigs] || worldConfigs["1"];
@@ -194,17 +196,35 @@ export default function MazeWord() {
     setLoading(false);
   }, [worldDetail]);
 
-  const handleCollect = async () => {
+  const handleCollect = async (noToolFlag: boolean) => {
     if (!currentCollectItem) return;
 
     try {
       let success = false;
       switch (currentCollectItem.itemType) {
         case "animal":
+          if (noToolFlag) {
+            if (Math.random() > 0.05) {
+              Taro.showToast({
+                title: "捕获失败！请携带相关工具成功率会更高噢！",
+                icon: "none",
+              });
+              break;
+            }
+          }
           const animalRes = await collectAnimal(currentCollectItem.item.id);
           success = animalRes.code === 200;
           break;
         case "plant":
+          if (noToolFlag) {
+            if (Math.random() > 0.05) {
+              Taro.showToast({
+                title: "捕获失败！请携带相关工具成功率会更高噢！",
+                icon: "none",
+              });
+              break;
+            }
+          }
           const plantRes = await collectPlant(currentCollectItem.item.id);
           success = plantRes.code === 200;
           break;
@@ -285,7 +305,24 @@ export default function MazeWord() {
     [maze, won, showCollectModal, collectItems],
   );
 
-  const handleExit = () => {
+  const handleExit = useCallback(async () => {
+    // 使用所有携带的工具
+    for (const tool of toolsData) {
+      try {
+        await useTool(tool.tool_id);
+      } catch (error) {
+        console.error("Failed to use tool:", error);
+      }
+    }
+    // 使用所有携带的食物
+    for (const food of feedsData) {
+      try {
+        await useFood(food.food_id);
+      } catch (error) {
+        console.error("Failed to use food:", error);
+      }
+    }
+
     const pages = Taro.getCurrentPages();
     if (pages.length > 1) {
       Taro.navigateBack();
@@ -294,7 +331,7 @@ export default function MazeWord() {
         url: "/pages/home/index",
       });
     }
-  };
+  }, [toolsData, feedsData]);
 
   const handleMoveUp = () => movePlayer(0, -1);
   const handleMoveDown = () => movePlayer(0, 1);
@@ -349,19 +386,6 @@ export default function MazeWord() {
         </ScrollView>
       </View>
 
-      {/* <View className="maze-stats">
-        <View className="maze-stats-card">
-          <View className="maze-stat">
-            <Text className="maze-stat-value">{collectedCount}</Text>
-            <Text className="maze-stat-label">已收集</Text>
-          </View>
-          <View className="maze-stat">
-            <Text className="maze-stat-value">{collectItems.length}</Text>
-            <Text className="maze-stat-label">剩余</Text>
-          </View>
-        </View>
-      </View> */}
-
       <View className="maze-container">
         <View className="maze-card">
           <View className="maze-content">
@@ -409,6 +433,7 @@ export default function MazeWord() {
         visible={showCollectModal}
         itemType={currentCollectItem?.itemType || "animal"}
         item={currentCollectItem?.item || null}
+        toolsData={toolsData}
         onCollect={handleCollect}
         onSkip={handleSkip}
       />

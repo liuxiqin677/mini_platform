@@ -1,0 +1,165 @@
+.animal-plant-page {
+  min-height: 100vh;
+  background-color: #faf5f0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  padding: 196rpx 32rpx 32rpx 32rpx;
+}
+
+.back-btn {
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.08);
+}
+
+.header-title {
+  font-size: 48rpx;
+  font-weight: 700;
+  color: #1e293b;
+  display: block;
+  margin-bottom: 8rpx;
+}
+
+.header-count {
+  font-size: 28rpx;
+  color: #64748b;
+  display: block;
+}
+
+.item-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 24rpx 32rpx;
+}
+
+.animal-item-card {
+  background-color: #ffffff;
+  border-radius: 24rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+}
+
+.animal-item-emoji-wrapper {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 20rpx;
+  background-color: #fff7ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 56rpx;
+  margin-right: 20rpx;
+}
+
+.animal-item-info {
+  flex: 1;
+}
+
+.animal-item-name-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.animal-item-name {
+  font-size: 30rpx;
+  font-weight: 700;
+  color: #333333;
+}
+
+.animal-item-original-name {
+  font-size: 24rpx;
+  color: #999999;
+  margin-left: 8rpx;
+}
+
+.animal-item-progress-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 12rpx;
+}
+
+.animal-item-heart {
+  font-size: 28rpx;
+  margin-right: 12rpx;
+}
+
+.progress-bar {
+  flex: 1;
+  height: 16rpx;
+  background-color: #f5f5f5;
+  border-radius: 8rpx;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: 8rpx;
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  margin-left: 12rpx;
+  font-size: 24rpx;
+  font-weight: 600;
+  color: #666666;
+}
+
+.animal-item-likes {
+  display: flex;
+  align-items: center;
+  font-size: 28rpx;
+}
+
+.animal-item-likes-label {
+  font-size: 24rpx;
+  color: #999999;
+  margin-right: 8rpx;
+}
+
+.animal-item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+  margin-left: 20rpx;
+}
+
+.action-btn {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 16rpx;
+  background-color: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+}
+
+.action-btn-delete {
+  background-color: #fff2f0;
+}
+
+.loading-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-text {
+  font-size: 28rpx;
+  color: #999999;
+}
