@@ -176,7 +176,7 @@ export default function AnimalAndPlantList() {
                 </View>
                 <View className="animal-item-progress-row">
                   <Text className="animal-item-heart">
-                    {getHeartEmoji(happiness)}
+                    {getHeartEmoji(item.love)}
                   </Text>
                   <View className="progress-bar">
                     <View

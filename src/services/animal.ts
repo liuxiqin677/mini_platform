@@ -28,8 +28,13 @@ export interface UserAnimalItem {
   emoji: string;
   description?: string;
   rarity: string;
+  favorite_food_ids?: number[];
+  foods: FoodItem[];
+  tool_ids?: number[];
+  tools: ToolItem[];
   created_at: string;
   updated_at: string;
+  love: number;
 }
 
 export const getAnimalsByCategory = (category: string) => {

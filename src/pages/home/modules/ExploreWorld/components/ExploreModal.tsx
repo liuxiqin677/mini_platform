@@ -49,6 +49,15 @@ export default function ExploreModal({
               <Text className="modal-world-desc">准备探索装备</Text>
             </View>
           </View>
+          {
+            (Boolean(selectedTools.length || selectedFeeds.length)) && (
+              <View>
+                <Text className="modal-confirm-recommand">
+                  探索结束后选择的物品将会被消耗
+                </Text>
+              </View>
+            )
+          }
           <View className="modal-close-btn" onClick={onClose}>
             <Text className="modal-close-icon">✕</Text>
           </View>

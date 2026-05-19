@@ -51,6 +51,5 @@ export function hasCommonElement(arr1: ToolItem[], arr2: UserToolItem[]): boolea
 }
 
 export const hasRightTool = (item: CollectItem, toolsData: UserToolItem[]) => {
-  console.log(item, toolsData)
   return hasCommonElement(item.tools || [], toolsData);
 };

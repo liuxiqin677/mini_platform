@@ -25,3 +25,9 @@ export * from "./animal";
 export * from "./plant";
 export * from "./tool";
 export * from "./food";
+
+// 培养相关
+export * from "./nurture";
+
+// 足迹相关
+export * from "./footprint";
